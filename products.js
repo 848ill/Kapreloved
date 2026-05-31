@@ -15,15 +15,20 @@ const WA_NUMBER = "6281373928863"; // <-- GANTI NOMOR WA SAKHA DI SINI
 const products = [
   {
     id: "KPL-001",
-    name: "Nama Barang 1",
+    name: "Sepatu Nike Blazer Bekas",
     brand: "Brand",
-    category: "Pakaian",
-    size: "M",
-    condition: "Like New",
-    price: 150000,
-    originalPrice: 400000,
-    description: "Deskripsi barang. Kondisi, alasan jual, catatan penting. Jujur apa adanya.",
+    category: "Sepatu",
+    size: "46",
+    condition: "Good",
+    price: 1500000,
+    originalPrice: 700000,
+    description: "Sepatu ini masih dalam keadaan bagus dan layak untuk dipakai",
     image: "",
+    images: [
+    "assets/pakaian1_1.jpg", // Foto ke-1 (sama dengan foto utama)
+    "assets/pakaian1_2.jpg", // Foto ke-2 (tampak belakang/detail)
+    "assets/pakaian1_3.jpg"  // Foto ke-3 (label ukuran/tag)
+  ],
     status: "available",
   },
   {
@@ -37,6 +42,11 @@ const products = [
     originalPrice: 600000,
     description: "Deskripsi barang. Kondisi, alasan jual, catatan penting. Jujur apa adanya.",
     image: "",
+    images: [
+    "assets/pakaian1_1.jpg", // Foto ke-1 (sama dengan foto utama)
+    "assets/pakaian1_2.jpg", // Foto ke-2 (tampak belakang/detail)
+    "assets/pakaian1_3.jpg"  // Foto ke-3 (label ukuran/tag)
+  ],
     status: "available",
   },
   {
