@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Kapreloved — Barang preloved pilihan. Kondisi jujur, harga wajar.">
+  <title>Kapreloved — Preloved Pilihan</title>
+  <meta property="og:title" content="Kapreloved — Preloved Pilihan">
+  <meta property="og:description" content="Barang preloved yang dipilih dengan cermat. Kondisi jujur, harga wajar.">
+  <meta property="og:type" content="website">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ══ NAV ══════════════════════════════════════════════════ -->
+<nav class="nav">
+  <a href="#" class="nav__logo">Kapre<em>loved</em></a>
+  <ul class="nav__links">
+    <li><a href="#listings" class="nav__link">Listings</a></li>
+    <li><a href="#how" class="nav__link">Cara Beli</a></li>
+    <li><a href="#cta" class="nav__cta">Chat WA</a></li>
+  </ul>
+</nav>
+
+<!-- ══ HERO ═════════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero__left">
+    <div class="eyebrow reveal">
+      <div class="eyebrow__line"></div>
+      <span class="eyebrow__text">Curated Preloved</span>
+    </div>
+    <h1 class="hero__title reveal">
+      Barang bagus<br>yang worth<br><em>to buy</em>
+    </h1>
+    <p class="hero__sub reveal">
+      No waste, well curated, fair price, good deals.
+    </p>
+    <div class="hero__actions reveal">
+      <a href="#listings" class="btn btn--primary">
+        Lihat Listings
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      <a href="#how" class="btn btn--ghost">Cara beli</a>
+    </div>
+  </div>
+  <div class="hero__right">
+    <div class="hero__tile">
+      <div class="hero__tile-icon">👕</div>
+      <div class="hero__tile-badge">Available</div>
+      <div class="hero__tile-name">Pakaian</div>
+      <div class="hero__tile-price">Mulai 50k</div>
+    </div>
+    <div class="hero__tile">
+      <div class="hero__tile-icon">👟</div>
+      <div class="hero__tile-badge">Available</div>
+      <div class="hero__tile-name">Sepatu</div>
+      <div class="hero__tile-price">Mulai 100k</div>
+    </div>
+    <div class="hero__tile">
+      <div class="hero__tile-icon">👜</div>
+      <div class="hero__tile-badge">Available</div>
+      <div class="hero__tile-name">Tas</div>
+      <div class="hero__tile-price">Mulai 75k</div>
+    </div>
+    <div class="hero__tile">
+      <div class="hero__tile-icon">⌚</div>
+      <div class="hero__tile-badge">Available</div>
+      <div class="hero__tile-name">Aksesoris</div>
+      <div class="hero__tile-price">Mulai 30k</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ MARQUEE ═══════════════════════════════════════════════ -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee__track">
+    <span class="marquee__item">Kapreloved</span>
+    <span class="marquee__item marquee__item--dot">·</span>
+    <span class="marquee__item">Kondisi Jujur</span>
+    <span class="marquee__item marquee__item--dot">·</span>
+    <span class="marquee__item">Harga Wajar</span>
+    <span class="marquee__item marquee__item--dot">·</span>
+    <span class="marquee__item">COD Jogja</span>
+    <span class="marquee__item marquee__item--dot">·</span>
+    <span class="marquee__item">Transfer OK</span>
+    <span class="marquee__item marquee__item--dot">·</span>
+    <span class="marquee__item">Respons Cepat</span>
+    <span class="marquee__item marquee__item--dot">·</span>
+    <!-- dupe for seamless loop -->
+    <span class="marquee__item">Kapreloved</span>
+    <span class="marquee__item marquee__item--dot">·</span>
+    <span class="marquee__item">Kondisi Jujur</span>
+    <span class="marquee__item marquee__item--dot">·</span>
+    <span class="marquee__item">Harga Wajar</span>
+    <span class="marquee__item marquee__item--dot">·</span>
+    <span class="marquee__item">COD Jogja</span>
+    <span class="marquee__item marquee__item--dot">·</span>
+    <span class="marquee__item">Transfer OK</span>
+    <span class="marquee__item marquee__item--dot">·</span>
+    <span class="marquee__item">Respons Cepat</span>
+    <span class="marquee__item marquee__item--dot">·</span>
+  </div>
+</div>
+
+<!-- ══ ABOUT ═════════════════════════════════════════════════ -->
+<section class="about reveal">
+  <div class="about__left">
+    <div class="section-label">
+      <div class="section-label__line"></div>
+      <span class="section-label__text">Tentang</span>
+    </div>
+    <h2 class="about__title">Bukan sekadar<br><em>jual-jualan biasa</em></h2>
+    <p class="about__body">
+      Kapreloved ada karena barang yang tidak lagi dipakai masih punya nilai. What you see is what you get.
+    </p>
+  </div>
+  <div class="about__right">
+    <div class="stats">
+      <div class="stat">
+        <div class="stat__num" id="stat-items">—</div>
+        <div class="stat__label">Item tersedia</div>
+      </div>
+      <div class="stat">
+        <div class="stat__num">100%</div>
+        <div class="stat__label">Legit & Transparan</div>
+      </div>
+      <div class="stat">
+        <div class="stat__num">Fast</div>
+        <div class="stat__label">Respons WA</div>
+      </div>
+      <div class="stat">
+        <div class="stat__num">COD</div>
+        <div class="stat__label">Jogja area</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ LISTINGS ══════════════════════════════════════════════ -->
+<section class="listings" id="listings">
+  <div class="listings__header reveal">
+    <div>
+      <h2 class="listings__title">Semua <em>listings</em></h2>
+    </div>
+    <span class="listings__count"><span id="item-count">0</span> item</span>
+  </div>
+
+  <!-- Controls -->
+  <div class="controls reveal">
+    <div class="controls__row">
+      <!-- Search -->
+      <div class="search-wrap">
+        <span class="search-icon">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+        </span>
+        <input type="text" id="search-input" class="search-input" placeholder="Cari nama, brand, kategori…" aria-label="Cari barang">
+      </div>
+      <!-- Sort -->
+      <select id="sort-select" class="sort-select" aria-label="Urutkan">
+        <option value="default">Urutan default</option>
+        <option value="price-asc">Harga: Terendah</option>
+        <option value="price-desc">Harga: Tertinggi</option>
+        <option value="name">Nama A–Z</option>
+      </select>
+    </div>
+
+    <!-- Category filter -->
+    <div class="controls__row">
+      <span class="controls__label">Kategori</span>
+      <div class="pills" id="category-pills">
+        <button class="pill pill--active" data-category="all">Semua</button>
+        <button class="pill" data-category="Pakaian">Pakaian</button>
+        <button class="pill" data-category="Sepatu">Sepatu</button>
+        <button class="pill" data-category="Tas">Tas</button>
+        <button class="pill" data-category="Aksesoris">Aksesoris</button>
+        <button class="pill" data-category="Lainnya">Lainnya</button>
+      </div>
+    </div>
+
+    <!-- Condition filter -->
+    <div class="controls__row">
+      <span class="controls__label">Kondisi</span>
+      <div class="pills" id="condition-pills">
+        <button class="pill pill--active" data-condition="all">Semua</button>
+        <button class="pill" data-condition="Like New">Like New</button>
+        <button class="pill" data-condition="Very Good">Very Good</button>
+        <button class="pill" data-condition="Good">Good</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Grid -->
+  <div class="grid" id="listings-grid" aria-label="Daftar barang"></div>
+
+  <!-- Empty state -->
+  <div class="empty-state hidden" id="empty-state" aria-live="polite">
+    <div class="empty-state__icon">🔍</div>
+    <h3 class="empty-state__title">Tidak ada barang yang cocok</h3>
+    <p class="empty-state__body">Coba ubah filter atau kata kunci pencarianmu.</p>
+    <button class="btn btn--primary" id="reset-btn">Reset Filter</button>
+  </div>
+</section>
+
+<!-- ══ HOW ═══════════════════════════════════════════════════ -->
+<section class="how" id="how">
+  <div class="how__left reveal">
+    <div class="section-label">
+      <div class="section-label__line"></div>
+      <span class="section-label__text">Cara Beli</span>
+    </div>
+    <h2 class="how__title">Simple,<br><em>no ribet</em></h2>
+  </div>
+  <div class="steps reveal">
+    <div class="step">
+      <div class="step__num">01</div>
+      <div>
+        <div class="step__title">Pilih barang yang kamu mau</div>
+        <div class="step__body">Scroll listings di atas. Klik produk untuk lihat detail lengkap kondisi, ukuran, dan deskripsi.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step__num">02</div>
+      <div>
+        <div class="step__title">Chat via WhatsApp</div>
+        <div class="step__body">Klik tombol "Chat WA" di detail barang. Pesan otomatis terisi dengan nama dan kode item tinggal kirim.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step__num">03</div>
+      <div>
+        <div class="step__title">Deal & selesai</div>
+        <div class="step__body">COD area Jogja atau transfer.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CTA ════════════════════════════════════════════════════ -->
+<section class="cta reveal" id="cta">
+  <div class="cta__eyebrow">
+    <div class="cta__eyebrow-line"></div>
+    <span class="cta__eyebrow-text">Ada yang menarik?</span>
+    <div class="cta__eyebrow-line"></div>
+  </div>
+  <h2 class="cta__title">Jangan tunggu<br>sampai <em>sold out</em></h2>
+  <p class="cta__body">Stok terbatas. Kalau ada yang menarik, chat sekarang.<br>Fast Respon, no spam.</p>
+  <a href="#listings" class="cta__btn">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="6 9 12 15 18 9"/>
+    </svg>
+    Lihat Semua Listings
+  </a>
+</section>
+
+<!-- ══ FOOTER ════════════════════════════════════════════════ -->
+<footer class="footer">
+  <div class="footer__logo">Kapre<em>loved</em></div>
+  <div class="footer__copy">© 2026 Kapreloved</div>
+  <a href="#" class="footer__wa" id="footer-wa">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+    WhatsApp
+  </a>
+</footer>
+
+<!-- ══ MODAL ══════════════════════════════════════════════════ -->
+<div class="modal-overlay" id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-name">
+  <div class="modal-backdrop" id="modal-backdrop"></div>
+  <div class="modal">
+    <button class="modal__close" id="modal-close" aria-label="Tutup">✕</button>
+
+    <!-- Left: image -->
+    <div id="modal-img-wrap" class="modal__img-wrap"></div>
+
+    <!-- Right: detail -->
+    <div class="modal__body">
+      <div>
+        <div class="modal__id" id="modal-id"></div>
+        <h2 class="modal__name" id="modal-name"></h2>
+        <p class="modal__brand" id="modal-brand"></p>
+      </div>
+
+      <div class="modal__tags">
+        <span class="modal__tag" id="modal-category"></span>
+        <span class="modal__tag" id="modal-size"></span>
+        <span class="modal__tag" id="modal-condition"></span>
+        <span class="modal__status-badge" id="modal-status"></span>
+      </div>
+
+      <div class="modal__pricing">
+        <span class="modal__price" id="modal-price"></span>
+        <span class="modal__original" id="modal-original"></span>
+        <span class="modal__saving" id="modal-saving"></span>
+      </div>
+
+      <hr class="modal__divider">
+
+      <div>
+        <div class="modal__section-title">Deskripsi & Kondisi</div>
+        <p class="modal__desc" id="modal-desc"></p>
+      </div>
+
+      <a href="#" target="_blank" class="modal__wa-btn" id="modal-wa-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+        Chat di WhatsApp
+      </a>
+    </div>
+  </div>
+</div>
+
+<script src="products.js"></script>
+<script src="app.js"></script>
+
+<!-- Update WA links dan stat setelah products.js loaded -->
+<script>
+  const available = products.filter(p => p.status === 'available').length;
+  document.getElementById('stat-items').textContent = available;
+  const waHref = `https://wa.me/6281373928863?text=Halo%20Kapreloved%2C%20saya%20tertarik%20dengan%20produk%20yang%20Anda%20jual.%20Apakah%20masih%20tersedia%3F`;
+  document.getElementById('footer-wa').href = waHref;
+  document.querySelector('.nav__cta').href = waHref;
+</script>
+
+</body>
+</html>
