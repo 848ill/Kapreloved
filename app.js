@@ -9,6 +9,7 @@
   let searchQuery = "";
   let sortOrder = "default";
   let activeProduct = null;
+  let activeImageIndex = 0;
 
   // ── DOM refs ───────────────────────────────────────────────
   const grid = document.getElementById("listings-grid");
@@ -36,27 +37,25 @@
     return map[category] || "📦";
   };
 
+  const getFirstImage = (p) => p.images && p.images.length > 0 ? p.images[0] : null;
+
   // ── Filter & sort ──────────────────────────────────────────
   function getFiltered() {
     let list = [...products];
-
     if (activeCategory !== "all") list = list.filter((p) => p.category === activeCategory);
     if (activeCondition !== "all") list = list.filter((p) => p.condition === activeCondition);
     if (searchQuery) {
       const q = searchQuery.toLowerCase();
-      list = list.filter(
-        (p) =>
-          p.name.toLowerCase().includes(q) ||
-          p.brand.toLowerCase().includes(q) ||
-          p.description.toLowerCase().includes(q) ||
-          p.category.toLowerCase().includes(q)
+      list = list.filter((p) =>
+        p.name.toLowerCase().includes(q) ||
+        p.brand.toLowerCase().includes(q) ||
+        p.description.toLowerCase().includes(q) ||
+        p.category.toLowerCase().includes(q)
       );
     }
-
     if (sortOrder === "price-asc") list.sort((a, b) => a.price - b.price);
     if (sortOrder === "price-desc") list.sort((a, b) => b.price - a.price);
     if (sortOrder === "name") list.sort((a, b) => a.name.localeCompare(b.name));
-
     return list;
   }
 
@@ -64,7 +63,6 @@
   function render() {
     const list = getFiltered();
     grid.innerHTML = "";
-
     if (countEl) countEl.textContent = list.length;
 
     if (list.length === 0) {
@@ -82,19 +80,24 @@
       card.style.animationDelay = `${i * 40}ms`;
       card.setAttribute("data-id", p.id);
 
-      const saving = Math.round((1 - p.price / p.originalPrice) * 100);
+      const saving = p.originalPrice > p.price ? Math.round((1 - p.price / p.originalPrice) * 100) : 0;
+      const firstImg = getFirstImage(p);
+      const imgCount = p.images ? p.images.length : 0;
 
       card.innerHTML = `
         <div class="card__img-wrap">
-          ${
-            p.image
-              ? `<img src="${p.image}" alt="${p.name}" class="card__img" loading="lazy">`
-              : `<div class="card__img-placeholder">${placeholder(p.category)}</div>`
+          ${firstImg
+            ? `<img src="${firstImg}" alt="${p.name}" class="card__img" loading="lazy">`
+            : `<div class="card__img-placeholder">${placeholder(p.category)}</div>`
           }
           <div class="card__badges">
-            ${p.status === "sold" ? `<span class="badge badge--sold">Sold</span>` : `<span class="badge badge--available">Available</span>`}
+            ${p.status === "sold"
+              ? `<span class="badge badge--sold">Sold</span>`
+              : `<span class="badge badge--available">Available</span>`
+            }
             ${saving > 0 && p.status !== "sold" ? `<span class="badge badge--saving">-${saving}%</span>` : ""}
           </div>
+          ${imgCount > 1 ? `<div class="card__img-count">${imgCount} foto</div>` : ""}
         </div>
         <div class="card__body">
           <div class="card__meta">
@@ -107,7 +110,7 @@
           <div class="card__footer">
             <div class="card__pricing">
               <span class="card__price">${fmt(p.price)}</span>
-              ${p.originalPrice ? `<span class="card__original">${fmt(p.originalPrice)}</span>` : ""}
+              ${p.originalPrice && p.originalPrice > p.price ? `<span class="card__original">${fmt(p.originalPrice)}</span>` : ""}
             </div>
             <span class="card__cond ${conditionColor[p.condition] || ""}">${p.condition}</span>
           </div>
@@ -119,10 +122,69 @@
     });
   }
 
+  // ── Gallery ────────────────────────────────────────────────
+  function renderGallery(p, index) {
+    activeImageIndex = index;
+    const images = p.images || [];
+    const imgWrap = document.getElementById("modal-img-wrap");
+
+    if (images.length === 0) {
+      imgWrap.innerHTML = `<div class="modal__img-placeholder">${placeholder(p.category)}</div>`;
+      return;
+    }
+
+    imgWrap.innerHTML = `
+      <div class="gallery">
+        <div class="gallery__main">
+          <img src="${images[index]}" alt="${p.name} foto ${index + 1}" class="gallery__img" id="gallery-main-img">
+          ${images.length > 1 ? `
+            <button class="gallery__arrow gallery__arrow--prev" id="gallery-prev" aria-label="Foto sebelumnya">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
+            <button class="gallery__arrow gallery__arrow--next" id="gallery-next" aria-label="Foto berikutnya">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+            <div class="gallery__counter">${index + 1} / ${images.length}</div>
+          ` : ""}
+        </div>
+        ${images.length > 1 ? `
+          <div class="gallery__thumbs">
+            ${images.map((src, i) => `
+              <button class="gallery__thumb ${i === index ? "gallery__thumb--active" : ""}" data-index="${i}">
+                <img src="${src}" alt="${p.name} foto ${i + 1}" loading="lazy">
+              </button>
+            `).join("")}
+          </div>
+        ` : ""}
+      </div>
+    `;
+
+    // Arrow events
+    document.getElementById("gallery-prev")?.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const newIndex = (activeImageIndex - 1 + images.length) % images.length;
+      renderGallery(p, newIndex);
+    });
+
+    document.getElementById("gallery-next")?.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const newIndex = (activeImageIndex + 1) % images.length;
+      renderGallery(p, newIndex);
+    });
+
+    // Thumb events
+    imgWrap.querySelectorAll(".gallery__thumb").forEach((thumb) => {
+      thumb.addEventListener("click", (e) => {
+        e.stopPropagation();
+        renderGallery(p, parseInt(thumb.dataset.index));
+      });
+    });
+  }
+
   // ── Modal ──────────────────────────────────────────────────
   function openModal(p) {
     activeProduct = p;
-    const saving = Math.round((1 - p.price / p.originalPrice) * 100);
+    const saving = p.originalPrice > p.price ? Math.round((1 - p.price / p.originalPrice) * 100) : 0;
 
     document.getElementById("modal-id").textContent = p.id;
     document.getElementById("modal-name").textContent = p.name;
@@ -131,16 +193,13 @@
     document.getElementById("modal-size").textContent = p.size && p.size !== "-" ? `Size ${p.size}` : "";
     document.getElementById("modal-condition").textContent = p.condition;
     document.getElementById("modal-price").textContent = fmt(p.price);
-    document.getElementById("modal-original").textContent = p.originalPrice ? fmt(p.originalPrice) : "";
+    document.getElementById("modal-original").textContent = p.originalPrice && p.originalPrice > p.price ? fmt(p.originalPrice) : "";
     document.getElementById("modal-saving").textContent = saving > 0 ? `Hemat ${saving}%` : "";
     document.getElementById("modal-desc").textContent = p.description;
     document.getElementById("modal-status").textContent = p.status === "sold" ? "Sold" : "Available";
     document.getElementById("modal-status").className = "modal__status-badge " + (p.status === "sold" ? "badge--sold" : "badge--available");
 
-    const imgWrap = document.getElementById("modal-img-wrap");
-    imgWrap.innerHTML = p.image
-      ? `<img src="${p.image}" alt="${p.name}" class="modal__img">`
-      : `<div class="modal__img-placeholder">${placeholder(p.category)}</div>`;
+    renderGallery(p, 0);
 
     // WA button
     const waBtn = document.getElementById("modal-wa-btn");
@@ -162,18 +221,27 @@
     modal.classList.remove("modal--open");
     document.body.style.overflow = "";
     activeProduct = null;
+    activeImageIndex = 0;
   }
 
-  // ── Events ─────────────────────────────────────────────────
-  searchInput?.addEventListener("input", (e) => {
-    searchQuery = e.target.value.trim();
-    render();
+  // ── Keyboard nav gallery ───────────────────────────────────
+  document.addEventListener("keydown", (e) => {
+    if (!activeProduct) return;
+    if (e.key === "Escape") { closeModal(); return; }
+    if (!activeProduct.images || activeProduct.images.length <= 1) return;
+    if (e.key === "ArrowLeft") {
+      const newIndex = (activeImageIndex - 1 + activeProduct.images.length) % activeProduct.images.length;
+      renderGallery(activeProduct, newIndex);
+    }
+    if (e.key === "ArrowRight") {
+      const newIndex = (activeImageIndex + 1) % activeProduct.images.length;
+      renderGallery(activeProduct, newIndex);
+    }
   });
 
-  sortSelect?.addEventListener("change", (e) => {
-    sortOrder = e.target.value;
-    render();
-  });
+  // ── Events ─────────────────────────────────────────────────
+  searchInput?.addEventListener("input", (e) => { searchQuery = e.target.value.trim(); render(); });
+  sortSelect?.addEventListener("change", (e) => { sortOrder = e.target.value; render(); });
 
   categoryBtns.forEach((btn) => {
     btn.addEventListener("click", () => {
@@ -195,17 +263,10 @@
 
   modalClose?.addEventListener("click", closeModal);
   modalBackdrop?.addEventListener("click", closeModal);
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") closeModal();
-  });
 
   document.getElementById("reset-btn")?.addEventListener("click", () => {
-    searchQuery = "";
-    activeCategory = "all";
-    activeCondition = "all";
-    sortOrder = "default";
-    searchInput.value = "";
-    sortSelect.value = "default";
+    searchQuery = ""; activeCategory = "all"; activeCondition = "all"; sortOrder = "default";
+    searchInput.value = ""; sortSelect.value = "default";
     categoryBtns.forEach((b) => b.classList.remove("pill--active"));
     conditionBtns.forEach((b) => b.classList.remove("pill--active"));
     document.querySelector('[data-category="all"]')?.classList.add("pill--active");
@@ -213,13 +274,11 @@
     render();
   });
 
-  // ── Scroll reveal ──────────────────────────────────────────
   const observer = new IntersectionObserver(
     (entries) => entries.forEach((e) => e.isIntersecting && e.target.classList.add("revealed")),
     { threshold: 0.08 }
   );
   document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
 
-  // ── Init ───────────────────────────────────────────────────
   render();
 })();

@@ -1,55 +1,82 @@
 // ============================================================
 // KAPRELOVED — PRODUCTS DATABASE
 // ============================================================
-// Cara isi:
-// - id: unik, ga boleh sama (format: KPL-001, KPL-002, dst)
-// - image: URL foto (Google Drive, Imgur, dll). Kalau belum ada, kosongin ""
+// - id: unik (format: KPL-001, KPL-002, dst)
+// - images: array path foto ["images/kpl-001-1.jpg", "images/kpl-001-2.jpg"]
+//           kosongkan array [] kalau belum ada foto
 // - condition: "Like New" | "Very Good" | "Good"
 // - status: "available" | "sold"
 // - category: "Pakaian" | "Sepatu" | "Tas" | "Aksesoris" | "Lainnya"
-// - waNumber: nomor WA Sakha (format: 628xxxxxxxxxx)
 // ============================================================
 
-const WA_NUMBER = "6281373928863"; // <-- GANTI NOMOR WA SAKHA DI SINI
+const WA_NUMBER = "6281373928863";
 
 const products = [
   {
     id: "KPL-001",
-    name: "Nama Barang 1",
-    brand: "Brand",
-    category: "Pakaian",
-    size: "M",
+    name: "Multicleaning Cleaning Brush",
+    brand: "Multicleaning",
+    category: "Lainnya",
+    size: "-",
     condition: "Like New",
-    price: 150000,
-    originalPrice: 400000,
-    description: "Deskripsi barang. Kondisi, alasan jual, catatan penting. Jujur apa adanya.",
-    image: "",
+    price: 20000,
+    originalPrice: 45000,
+    description: "Cleaning brush serbaguna. Kondisi baru, belum pernah dipakai. Stock 5 pcs.",
+    images: [
+      "images/kpl-001-1.jpeg",
+      "images/kpl-001-2.jpeg",
+      "images/kpl-001-3.jpeg",
+    ],
     status: "available",
   },
   {
     id: "KPL-002",
-    name: "Nama Barang 2",
-    brand: "Brand",
-    category: "Sepatu",
-    size: "42",
-    condition: "Very Good",
-    price: 200000,
-    originalPrice: 600000,
-    description: "Deskripsi barang. Kondisi, alasan jual, catatan penting. Jujur apa adanya.",
-    image: "",
+    name: "Tang Crimp",
+    brand: "-",
+    category: "Lainnya",
+    size: "-",
+    condition: "Like New",
+    price: 25000,
+    originalPrice: 50000,
+    description: "Tang crimp kondisi baru. Fungsi normal, siap pakai.",
+    images: [
+      "images/kpl-002-1.jpeg",
+      "images/kpl-002-2.jpeg",
+    ],
     status: "available",
   },
   {
     id: "KPL-003",
-    name: "Nama Barang 3",
-    brand: "Brand",
-    category: "Tas",
+    name: "New Balance",
+    brand: "New Balance",
+    category: "Sepatu",
     size: "-",
     condition: "Good",
-    price: 100000,
-    originalPrice: 300000,
-    description: "Deskripsi barang. Kondisi, alasan jual, catatan penting. Jujur apa adanya.",
-    image: "",
-    status: "sold",
+    price: 400000,
+    originalPrice: 400000,
+    description: "New Balance kondisi good. Ada tanda pemakaian wajar. Foto asli tersedia.",
+    images: [
+      "images/kpl-003-1.jpeg",
+      "images/kpl-003-2.jpeg",
+      "images/kpl-003-3.jpeg",
+    ],
+    status: "available",
+  },
+  {
+    id: "KPL-004",
+    name: "Nike Blazer Mid 77",
+    brand: "Nike",
+    category: "Sepatu",
+    size: "46",
+    condition: "Like New",
+    price: 700000,
+    originalPrice: 700000,
+    description: "Nike Blazer Mid 77 size 46. Kondisi like new, tidak ada box. Foto asli tersedia.",
+    images: [
+      "images/kpl-004-1.jpeg",
+      "images/kpl-004-2.jpeg",
+      
+    ],
+    status: "available",
   },
 ];
